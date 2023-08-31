@@ -3,41 +3,42 @@ package main
 import "fmt"
 
 func main() {
-	// Print
-	// This type of print doesn't add new line so the console print would be "hello, world"
-	fmt.Print("hello, ")
-	fmt.Print("world")
-	fmt.Print("\nNew Line\n") // This is how you can print new line.
+	// * Arrays
+	// Fixed length and cannot change that
+	var age [3]int
+	age = [3]int{2, 3, 4} // This is how you declare an array in Go.
 
-	// Println
-	// This would print these two statements in new lines.
-	fmt.Println("Hello")
-	fmt.Println("Duniya")
+	// Other assignment
+	var ageTwo = [3]int{20, 35, 30}
 
-	// Printing variables using print function
-	age := 32
-	name := "naam"
+	fmt.Println(age, ageTwo)
+	fmt.Println("The length of the array age is ", len(age))
 
-	fmt.Println("my name is ", age)
-	fmt.Println("and my name is ", name)
+	// Short hand
+	names := [4]string{"Romulus", "Orion", "Hassan", "Solomon"}
+	names[3] = "Merlin"
+	fmt.Println(names, len(names))
 
-	// Formatted string
-	// * %v is the default format specifier
-	// There are different format specifier
-	fmt.Printf("My age is %v and my name is %v \n", age, name)
-	fmt.Printf("My age is %q and my name is %q \n", age, name) // %q puts the formatter into quotation
-	// ! This will not work for numbers and only string. Output: My age is ' '
+	// * Slices
 
-	// %T will print the type of the variable.
-	fmt.Printf("Age is of type %T\n", age)
-	// * Output: Age is of type int
+	var scores = []int{100, 20, 30} //This is a slice if the length is not given
 
-	// Printing float
-	fmt.Printf("you scored %f points.\n", 22.3)
-	fmt.Printf("you scored %.2f points.\n", 22.3)
+	// Unlike in arrays we can append a value to the slices.
+	var newScores = append(scores, 85) // *But the append method doesn't append the value to the original array so it should be stored in new variable.
+	scores = append(scores, 65)        //Or like this
 
-	// Sprintf: Saves the formatted string
-	var str = fmt.Sprintf("My age is %q and my name is %q \n", age, name)
-	fmt.Printf("The saved String is: %v", str)
+	fmt.Println(newScores, scores)
 
+	// * Ranges
+	// This is a way to cut a range of elements form a array or slice [Somthing like slice in JavaScript]
+
+	rangeOne := names[1:3]
+	rangeTwo := names[1:]   //Go from index one to end of the array.
+	rangeThree := names[:3] //From the first to the index of three but not including position 3.
+
+	// since these slices are just ranges itself, we can easily append these as well.
+
+	fmt.Println(rangeOne, rangeTwo, rangeThree)
+	rangeOne = append(rangeOne, "Noah") //But this does effect the underlying arrays which is rangeTwo
+	fmt.Println(rangeOne, rangeTwo, rangeThree)
 }
