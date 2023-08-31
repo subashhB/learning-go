@@ -2,16 +2,25 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"sort"
 )
 
 func main() {
-	greetings := "Hi Mom"
-	// Strings is the library that contains methods related to stringn
-	fmt.Println(strings.Contains(strings.ToLower(greetings), "hi"))
-	fmt.Println(strings.ReplaceAll(greetings, "Hi", "Hello"))
-	fmt.Println(strings.ToUpper(greetings))
-	fmt.Println(strings.Index(greetings, "om")) //returns the position where 'om' occurs, in this case 4
-	fmt.Println(strings.Split(greetings, " "))  //returns the split strings into slice.
+	ages := []int{45, 50, 23, 10, 56, 32, 21, 5}
+	sort.Ints(ages) //Unlike the strings methods this does changes the original array or slice.
+	fmt.Println(ages)
 
+	index := sort.SearchInts(ages, 21) //This returns the index of the searched value in the ages slice ie 21
+
+	fmt.Println(ages[index], index)
+
+	unfoundIndex := sort.SearchInts(ages, 32) //This returns: length of age slice + 1 if the searching parameter is larger than all the values or the value that is closest to the search parameter.
+	fmt.Println(unfoundIndex)
+
+	// Sort for String
+	names := []string{"Romulus=Quirinus", "Orion", "Merlin", "Hassan of the Mountains", "Solomon", "Noah"}
+	sort.Strings(names)
+	fmt.Println(names)
+
+	fmt.Println(sort.SearchStrings(names, "Quirinus"))
 }
