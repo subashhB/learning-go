@@ -1,26 +1,37 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
 func main() {
-	ages := []int{45, 50, 23, 10, 56, 32, 21, 5}
-	sort.Ints(ages) //Unlike the strings methods this does changes the original array or slice.
-	fmt.Println(ages)
+	x := 0
 
-	index := sort.SearchInts(ages, 21) //This returns the index of the searched value in the ages slice ie 21
+	// While Loop
+	for x < 5 {
+		fmt.Println("Value of x is: ", x)
+		x++
+	}
 
-	fmt.Println(ages[index], index)
+	// For loop
+	for i := 0; i < 5; i++ {
+		fmt.Println("Value of i is: ", i)
+	}
 
-	unfoundIndex := sort.SearchInts(ages, 32) //This returns: length of age slice + 1 if the searching parameter is larger than all the values or the value that is closest to the search parameter.
-	fmt.Println(unfoundIndex)
+	// Loop through Slice
+	names := []string{"Romulus=Quirinus", "Orion", "Merlin", "Solomon", "Hassan of the Mountains", "Noah"}
+	for i := 0; i < len(names); i++ {
+		fmt.Println("Name at", i, " of i is: ", names[i])
+	}
 
-	// Sort for String
-	names := []string{"Romulus=Quirinus", "Orion", "Merlin", "Hassan of the Mountains", "Solomon", "Noah"}
-	sort.Strings(names)
-	fmt.Println(names)
+	// For in loop
+	for index, value := range names {
+		fmt.Printf("The value at index %v is %v\n", index, value)
+	}
 
-	fmt.Println(sort.SearchStrings(names, "Quirinus"))
+	// * If you don't want to use the index, replace it with _
+	//  * Same for the value
+	for _, value := range names {
+		fmt.Println("The name is ", value)
+		value = "nothing" // *This won't change the value in the original slice because the value here is a local state.
+	}
+
 }
