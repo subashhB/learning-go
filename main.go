@@ -3,35 +3,37 @@ package main
 import "fmt"
 
 func main() {
-	x := 0
+	age := 45
 
-	// While Loop
-	for x < 5 {
-		fmt.Println("Value of x is: ", x)
-		x++
+	// Booleans
+	fmt.Println(age <= 50)
+	fmt.Println(age >= 50)
+	fmt.Println(age == 45)
+	fmt.Println(age != 50)
+
+	if age <= 30 {
+		fmt.Println("age is less than or equal to 30")
+	} else if age <= 40 {
+		fmt.Println("age is less than or equal to 40")
+	} else {
+		fmt.Println("age is less than or equal to neither 30 nor 40")
 	}
+	grandServants := []string{"Romulus=Quirinus", "Orion", "Merlin", "Hassan of the Mountains", "Solomon", "Noah"}
 
-	// For loop
-	for i := 0; i < 5; i++ {
-		fmt.Println("Value of i is: ", i)
-	}
+	for index, value := range grandServants {
+		if index == 1 {
+			fmt.Println("Continuing at pos ", index)
+			continue //This will break the iteration but will continue the loop by taking the process to the start of the loop but will stop the process form going further down to the codes below.
+			// @param 1 For index == 1, the print below iwll not be executed.
+		}
 
-	// Loop through Slice
-	names := []string{"Romulus=Quirinus", "Orion", "Merlin", "Solomon", "Hassan of the Mountains", "Noah"}
-	for i := 0; i < len(names); i++ {
-		fmt.Println("Name at", i, " of i is: ", names[i])
-	}
+		if index < 2 {
+			fmt.Println("Break at position ", index)
+			break //This breaks the loop entirely with no continue
+		}
 
-	// For in loop
-	for index, value := range names {
-		fmt.Printf("The value at index %v is %v\n", index, value)
-	}
+		fmt.Printf("The value at pos %v is %v\n", index, value)
 
-	// * If you don't want to use the index, replace it with _
-	//  * Same for the value
-	for _, value := range names {
-		fmt.Println("The name is ", value)
-		value = "nothing" // *This won't change the value in the original slice because the value here is a local state.
 	}
 
 }
