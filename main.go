@@ -2,37 +2,32 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"strings"
 )
 
-func sayGreeting(name string) {
-	fmt.Println("Good Morning", name)
-}
+func getInitials(name string) (string, string) {
+	s := strings.ToUpper(name)
+	splits := strings.Split(s, " ")
 
-func sayBye(name string) {
-	fmt.Println("Good Bye", name)
-}
+	var initials []string
 
-func cycleNames(names []string, function func(string)) {
-	for _, v := range names {
-		function(v)
+	for _, v := range splits {
+		initials = append(initials, v[:1])
 	}
-}
 
-func cirleArea(radius float64) float64 {
-	return math.Pi * radius * radius
+	if len(initials) == 2 {
+		return initials[0], initials[1]
+	}
+	return initials[0], "_"
 }
 
 func main() {
-	sayGreeting("Zelda")
-	sayGreeting("Tifa")
-	sayBye("Zelda")
+	firstInitial, secondInitial := getInitials("Tifa Lockhart")
+	fmt.Println(firstInitial, secondInitial)
 
-	cycleNames([]string{"Romulus", "Orion", "Merlin", "Solomon", "Hasan", "Noah"}, sayGreeting) //We aren't calling the function otherwise we would be invoking the function here only which we don't want instead we are passing the reference of the function.
-	cycleNames([]string{"Romulus", "Orion", "Merlin", "Solomon", "Hasan", "Noah"}, sayBye)
+	firstInitial1, secondInitial1 := getInitials("Tifa Lockhart")
+	fmt.Println(firstInitial1, secondInitial1)
 
-	area1 := cirleArea(7)
-	area51 := cirleArea(7.5)
-	fmt.Printf("Circle 1 is %.3f and Circle 2 is %.3f", area1, area51)
-
+	firstInitial2, secondInitial2 := getInitials("Barret")
+	fmt.Println(firstInitial2, secondInitial2)
 }
