@@ -1,33 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
-func getInitials(name string) (string, string) {
-	s := strings.ToUpper(name)
-	splits := strings.Split(s, " ")
-
-	var initials []string
-
-	for _, v := range splits {
-		initials = append(initials, v[:1])
-	}
-
-	if len(initials) == 2 {
-		return initials[0], initials[1]
-	}
-	return initials[0], "_"
-}
+var score = 99.5
 
 func main() {
-	firstInitial, secondInitial := getInitials("Tifa Lockhart")
-	fmt.Println(firstInitial, secondInitial)
 
-	firstInitial1, secondInitial1 := getInitials("Tifa Lockhart")
-	fmt.Println(firstInitial1, secondInitial1)
+	// ! At this point the score would be undefined because it is not inside package score at this point but inside the block scope.
+	// var score = 99.5
 
-	firstInitial2, secondInitial2 := getInitials("Barret")
-	fmt.Println(firstInitial2, secondInitial2)
+	// !You need to make sure that you run both the files in the terminal otherwise these imported values and functions would be undefined.
+	sayHello("Mario")
+
+	showScore()
+	for _, v := range points {
+		fmt.Println(v)
+	}
+
 }
