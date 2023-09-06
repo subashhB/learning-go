@@ -2,36 +2,27 @@ package main
 
 import "fmt"
 
-func updateName(name string) string {
-	name = "wedge"
-	return name //If we have to get this value then we return the value
-}
-
-func updateMenu(menuMap map[string]float64) {
-	menuMap["coffe"] = 29.9
+// Now we're accepting pointer to the string as an arguement
+func updateName(name *string) {
+	// Take the pointer, derefernce it to see where it is pointing at and update the value at that memory block
+	*name = "wedge"
 }
 
 func main() {
 	// Non pointer values
 	name := "Tifa"
 
-	updatedName := updateName(name) //Here a copy of the value is sent not the actual value so when something happens inside the function it happens to the copy and not the actual variable.
+	fmt.Println("Memory Address of the name: ", &name) //Here, &name is the pointer of the variable
+
+	m := &name
+
+	fmt.Println("Memory Address: ", m)              //Here m is the pointer
+	fmt.Println("Value at the memory address:", *m) // *m allows us to access the value in the address that m is pointing to
+	// The reference value for the value that pointer points to.
 
 	fmt.Println(name)
-	fmt.Println(updatedName)
-
-	// Pointer Wrapper Values
-	menu := map[string]float64{
-		"soup":           44.9,
-		"pie":            79.9,
-		"salad":          67.7,
-		"toffee pudding": 35.5,
-	}
-
-	updateMenu(menu) //In this case the original value does change for array, slice, maps, struct
-	// This happens so because in these datatypes Go splits the data into two memory blocks.
-	// One block contains the values and other contains "Pointer" pointing to the memory address to the values.
-	// When passed by value it copies the memory address itself so whatever the changes are done are reflected to the original values since the copy points to the same memory location.
-	fmt.Println(menu)
-
+	// To overcome the boundaries of Pass by value for the non pointer wrapping variables, we can use the pointers.
+	// By the use of the pointers we can now change the value of the name variable, we weren't able to do so before.
+	updateName(m)
+	fmt.Println(name)
 }
