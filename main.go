@@ -47,8 +47,8 @@ func promptOptions(b bill) {
 		fmt.Println("Item added - ", name, price)
 		promptOptions(b)
 	case "s":
-		fmt.Println("You chose to save the bill.")
-		fmt.Println(b.format())
+		b.save()
+		fmt.Println("You've saved the file ", b.name)
 	case "t":
 		tip, _ := getInput("Enter tip amount (Rs.): ", reader)
 		t, err := strconv.ParseFloat(tip, 64)
@@ -69,5 +69,4 @@ func promptOptions(b bill) {
 func main() {
 	myBill := createBill()
 	promptOptions(myBill)
-	fmt.Println(myBill)
 }

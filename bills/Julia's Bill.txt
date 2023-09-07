@@ -1,0 +1,8 @@
+Bill Breakdown: 
+
+Pie:                      ....Rs.75 
+Cake:                     ....Rs.145.7 
+Coffee:                   ....Rs.90.5 
+
+total:                    ....Rs.15
+total:                    ....Rs.326.20
